@@ -7,13 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="./media/favicon.png" type="image/png">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:300,400,700&display=swap" rel="stylesheet">
     <!--
     <script src="./js/main.js"></script>
     -->
 </head>
 <body>
     <main>
-        
+        <section>
+            <h1>Weather App</h1>
+            <p>The weather info at your fingertip.</p>
+            <form>
+                <div>
+                    <input type="text" name="city" id="city">
+                    <button type="submit">spyglass</button>
+                </div>
+                <label for="celcius">C
+                    <input type="radio" name="tempUnit" value="metric" checked>
+                </label>
+                <label for="farenheit">F
+                    <input type="radio" name="tempUnit" value="imperial">
+                </label>
+            </form>
+        </section>
+        <section>
+            <h2 id="location">City Name and country</h2>
+            <div id="weahther-container">
+                <img id="current-icon" src="./media/cloudy-day-1.svg" alt="cloudy day">
+                <p>Cloudy day</p>
+                <p>Current temperature: <span>0&deg;C</span></p>
+                <p>Min. temperature: <span>0&deg;C</span></p>
+                <p>Max. temperature: <span>0&deg;C</span></p>
+                <p>Atmospheric pressure: <span>1003hPa</span></p>
+                <p>Humidity: <span>74%</span></p>
+                <p>Wind: <span>3 km/h, E</span></p>
+            </div>
+            <div>
+                <button>Current</button>
+                <button>Forcast</button>
+            </div>
+        </section>
     </main>
+    <footer>
+        <a href="http://github.com/wagon15" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <button>about</button>
+    </footer>
 </body>
 </html>
