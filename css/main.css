@@ -1,1 +1,26 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+/*
+============== Variables ==============
+*/
+/*
+============== Global ==============
+*/
+/*
+============== Global ==============
+*/
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 160%;
+  font-size: 1.6rem;
+  font-family: Catamaran, Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+@media only screen and (min-width: 60rem) {
+  body {
+    font-size: 200%;
+  }
+}
+/*# sourceMappingURL=main.css.map */

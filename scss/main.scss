@@ -1,0 +1,32 @@
+/*
+============== Variables ==============
+*/
+$text-primary: #000000;
+$layout-brakepoint: 60rem;
+/*
+============== Global ==============
+*/
+@mixin desktop {
+    @media only screen and (min-width: $layout-brakepoint) {
+        @content;
+    }
+}
+
+/*
+============== Global ==============
+*/
+:root{
+    font-size: 62.5%; // Sets 1rem to 10px in default 16px case
+}
+
+body{
+    font-size: 160%; // In case of no rem support
+    font-size: 1.6rem; // Sets back to 16px
+    font-family: Catamaran, Helvetica, Arial, sans-serif;
+    color: $text-primary;
+
+    @media only screen and (min-width: $layout-brakepoint){
+        font-size: 200%;
+    }
+
+}
