@@ -1,55 +1,50 @@
 class WeatherHtml {
     constructor() {
-        this.weatherSection = document.getElementById('weather-section');
-        this.weatherContainer = document.getElementById('weather-container');
+        this.locationContainer = document.getElementById('location');
+        this.weatherContainer = document.getElementById('weatherContainer');
         this.metricUnitsField = document.getElementById('metric');
         this.imperialUnitsField = document.getElementById('imperial');
-        this.units = null;
+        this.units = 'metric';
     }
 
     toggleSpinner() {
         // Remove all elements
-        this.weatherSection.innerHTML = this.weatherSection.innerHTML === `<div class="lds-dual-ring"></div>` ? '' : `<div class="lds-dual-ring"></div>` ;
+        this.weatherContainer.innerHTML = this.weatherContainer.innerHTML === `<div class="lds-dual-ring"></div>` ? '' : `<div class="lds-dual-ring"></div>` ;
         
     }
 
     errorNotify(content) {
-        this.weatherSection.innerHTML = 
+        this.weatherContainer.innerHTML = 
             `<div class="error">
                 <img src="#" alt="Error flag"/>
                 <p>${content}</p>
             </div>`;
 
         setTimeout( () => {
-            this.weatherSection.innerHTML = '';
+            this.weatherContainer.innerHTML = '';
         }, 5000);
     }
 
-    showCurrentWeather(data, units = 'metric'){
+    showCurrentWeather(data){
 
-        this.weatherSection.innerHTML = 
-            `<h2 id="location">${data.locationName}, ${data.country}</h2>
-            <div id="weahther-container">
-                <img id="current-icon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
-                <p>${data.weather}</p>
-                <p>Current temperature: <span>${
-                    units === 'metric' ? (data.temp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
+        this.locationContainer.innerText = `${data.locationName}, ${data.country}`;
+        this.weatherContainer.innerHTML = `
+            <img id="currentIcon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
+            <p>${data.weather}</p>
+            <p>Current temperature: <span>${
+                this.units === 'metric' ? (data.temp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
+            </span></p>
+            <p>Min. temperature: <span>${
+                this.units === 'metric' ? (data.minTemp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
                 </span></p>
-                <p>Min. temperature: <span>${
-                    units === 'metric' ? (data.minTemp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
-                    </span></p>
-                <p>Max. temperature: <span>${
-                    units === 'metric' ? (data.maxTemp + '&deg;C')  : (this.tempToFarenheit(data.maxTemp)+'&deg;F')}
-                    </span></p>
-                <p>Atmospheric pressure: <span>${data.atmPressure}hPa</span></p>
-                <p>Humidity: <span>${data.humidity}%</span></p>
-                <p>Wind: <span>${
-                    units === 'metric' ? (this.windSpeedToKmpH(data.windSpeed) + 'km/h') : (this.windSpeedToMipH(data.windSpeed) + 'mi/h') }, ${this.windDirToNEWS(data.windDir)}</span></p>
-            </div>
-            <div>
-                <button>Current</button>
-                <button>Forcast</button>
-            </div>`
+            <p>Max. temperature: <span>${
+                this.units === 'metric' ? (data.maxTemp + '&deg;C')  : (this.tempToFarenheit(data.maxTemp)+'&deg;F')}
+                </span></p>
+            <p>Atmospheric pressure: <span>${data.atmPressure}hPa</span></p>
+            <p>Humidity: <span>${data.humidity}%</span></p>
+            <p>Wind: <span>${
+                this.units === 'metric' ? (this.windSpeedToKmpH(data.windSpeed) + 'km/h') : (this.windSpeedToMipH(data.windSpeed) + 'mi/h') }, ${this.windDirToNEWS(data.windDir)}</span></p>`;
+
     }
 
     updateWeatherView(data, units = 'metric') {
@@ -64,7 +59,7 @@ class WeatherHtml {
         this.units = units;
 
         if( data !== null) {
-            weatherHtml.showCurrentWeather(data, units)
+            weatherHtml.showCurrentWeather(data)
         }
     }
 
@@ -75,14 +70,14 @@ class WeatherHtml {
         data.dayList.forEach( elem => {
             output += `
             <div> 
-                <img id="current-icon" src="./media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
+                <img id="currentIcon" src="./media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
                 <p>${elem.weather}</p>
                 <p>Current temperature: <span>${
                     this.units === 'metric' ? (elem.temp + '&deg;C')  : (this.tempToFarenheit(elem.temp)+'&deg;F')}
                 </span></p>
                 <p>Humidity: <span>${elem.humidity}%</span></p>
                 <p>Wind: <span>${
-                    this.units === 'metric' ? (this.windSpeedToKmpH(elem.windSpeed) + 'km/h') : (this.windSpeedToMipH(elem.windSpeed) + 'mi/h') }, ${this.windDirToNEWS(data.windDir)}</span></p>
+                    this.units === 'metric' ? (this.windSpeedToKmpH(elem.windSpeed) + 'km/h') : (this.windSpeedToMipH(elem.windSpeed) + 'mi/h') }</span></p>
                 <p>${elem.date.toLocaleDateString('en-US', { weekday: 'long'})}</p>
                 <p>${elem.date.toLocaleDateString('en-US')}</p>
             </div>`;
@@ -154,11 +149,14 @@ class WeatherHtml {
             case '11d':
             case '11n':
                 myIconId = 'thunder.svg';
+                break;
+
             case '13d':
             case '13n':
             case '50d':
             case '50n':
                 myIconId = 'snowy-6.svg';
+                break;
             default:
                 myIconId = 'cloudy.svg';
         }

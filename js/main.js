@@ -6,7 +6,9 @@ import {weatherHtml} from './UI.js';
 const   form = document.getElementById('weatherForm'),
         inputField = document.getElementById('city'),
         metricUnitsField = document.getElementById('metric'),
-        imperialUnitsField = document.getElementById('imperial');
+        imperialUnitsField = document.getElementById('imperial'),
+        btnCurrent = document.getElementById('btnCurrent'),
+        btnForcast = document.getElementById('btnForcast');
 
 // Case when target submitted by the input field
 form.onsubmit = (event) => {
@@ -19,7 +21,7 @@ form.onsubmit = (event) => {
             weatherAPI.getCurrentByName(inputField.value)
                 .then( () => {
                     weatherHtml.toggleSpinner();
-                    weatherHtml.updateWeatherView(weatherAPI.currentData)
+                    weatherHtml.showCurrentWeather(weatherAPI.currentData)
 
                     weatherAPI.getForcastByName(inputField.value)
                         .catch( error => {
@@ -44,3 +46,11 @@ metricUnitsField.onclick = (event) => {
 imperialUnitsField.onclick = (event) => {
     weatherHtml.updateWeatherView(weatherAPI.currentData, 'imperial');
 };
+
+// Switch current / forcast view
+btnForcast.onclick = (event) => {
+    weatherHtml.showForcastView(weatherAPI.forcastData);
+};
+btnCurrent.onclick = (event) => {
+    weatherHtml.showCurrentWeather(weatherAPI.currentData);
+}
