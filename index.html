@@ -14,20 +14,16 @@
         <section>
             <h1>Weather App</h1>
             <p>The weather info at your fingertip.</p>
-            <form>
+            <form id="weatherForm">
+                <input type="text" name="city" id="city" placeholder="Enter city name">
+                <button type="submit">spyglass</button>
+            </form>            
                 <div>
-                    <input type="text" name="city" id="city">
-                    <button type="submit">spyglass</button>
+                    <button for="celcius" id="metric">C</button>
+                    <button for="farenheit" id="imperial">F</button>
                 </div>
-                <label for="celcius">C
-                    <input type="radio" name="tempUnit" value="metric" checked>
-                </label>
-                <label for="farenheit">F
-                    <input type="radio" name="tempUnit" value="imperial">
-                </label>
-            </form>
         </section>
-        <section>
+        <section id="weather-section">
             <h2 id="location">City Name and country</h2>
             <div id="weahther-container">
                 <img id="current-icon" src="./media/cloudy-day-1.svg" alt="cloudy day">
@@ -49,6 +45,6 @@
         <a href="http://github.com/wagon15" target="_blank" rel="noopener noreferrer">GitHub</a>
         <button>about</button>
     </footer>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>
