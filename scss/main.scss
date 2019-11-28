@@ -1,15 +1,32 @@
 /*
 ============== Variables ==============
 */
-$text-primary: #000000;
+$text-primary: #808080;
+$text-secondary: #035fb5;
+$text-ternary: #156f6b;
+$text-highlight: #bd6500;
 $layout-brakepoint: 60rem;
+$background-color: #e6e6e6;
+$container-background: #ffffff;
 /*
-============== Global ==============
+============== Functions ==============
 */
+// Media query
 @mixin desktop {
     @media only screen and (min-width: $layout-brakepoint) {
         @content;
     }
+}
+// Button reset
+@mixin buttonReset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  transition: all .2s ease;
 }
 
 /*
@@ -24,11 +41,227 @@ body{
     font-size: 1.6rem; // Sets back to 16px
     font-family: Catamaran, Helvetica, Arial, sans-serif;
     color: $text-primary;
+    margin: 0;
 
     @media only screen and (min-width: $layout-brakepoint){
         font-size: 200%;
     }
 
+    background-color: $background-color;
+}
+/*
+============== Main Container ==============
+*/
+.container {
+  width: 100%;
+
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5em;
+  box-sizing: border-box;
+  
+  background-color: $container-background;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+// Header
+.headerSection {
+  text-align: center;
+
+  &__header {
+    font-size: 4em;
+    color: $text-secondary;
+    font-family: 'Odibee Sans', cursive;
+     margin: 0;
+  }
+
+  &__info {
+    margin-top: 0;
+  }
+
+  &__form {
+    position: relative;
+  }
+
+  $icon-size: 2em;
+  &__cityField {
+    width: 100%;
+    min-height: $icon-size;
+    height: 3em;
+
+    padding-left: .5em;
+    padding-right: 2em;
+    box-sizing: border-box;
+
+    font-family: inherit;
+    font-size: inherit;
+    border-radius: 2em;
+    border: 2px solid $text-secondary;
+  }
+
+  &__submit {
+    @include buttonReset();
+
+    position: absolute;
+    right: 1em;
+    top: 0;
+    height: 3em;
+    width: $icon-size;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 0;
+
+    filter: invert(26%) sepia(61%) saturate(2053%) hue-rotate(189deg) brightness(98%) contrast(99%);
+
+   
+    &:hover,
+    &:active {
+      filter: invert(33%) sepia(97%) saturate(1859%) hue-rotate(24deg) brightness(96%) contrast(101%);
+    }
+
+    & img{
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__unitsContainer {
+    font-size: 1.5em;
+  }
+
+  &__units {
+    @include buttonReset();
+
+    &--isActive, &:hover {
+      color: $text-highlight;
+    }
+  }
+}
+
+// Weather
+.weatherSection{
+  text-align: center;
+  font-weight: bold;
+  min-height: 200px;
+
+
+  &__header {
+    margin: .2em 0;
+
+    color: $text-ternary
+  }
+
+  &__icon {
+    width: 100%;
+    max-width: 128px;
+  }
+
+  &__mainInfo{
+    margin: 0 0 .5em;
+    font-size: 1.5em;
+  }
+
+  &__info{
+    margin: 0;
+  }
+
+  &__highlighted{
+    font-size: 1.3em;
+    color: $text-secondary;
+  }
+
+  &__error{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    text-align: left;
+
+    &>img{
+      max-width: 128px;
+      width: 30%;
+    }
+  }
+
+  &__btnContainer{
+    margin-top: 1em;
+    display: none;
+
+    &--isVisible {
+      display: block;
+    }
+  }
+
+  &__btn {
+    padding: .1em .5em;
+
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: bold;
+
+    background: $container-background;
+    border: 1px solid transparentize($color: $text-primary, $amount: 0.5);
+    border-radius: .3em;
+    cursor: pointer;
+
+    transition: all .2s ease;
+
+    &--isActive, &:hover{
+      background-color: $text-secondary;
+      color: $container-background;
+    }
+
+    &:first-of-type {
+      margin-right: .5em;
+    }
+  }
+}
+
+/*
+============== Footer Container ==============
+*/
+
+.footerContainer {
+  margin-top: 1em;
+  padding: 1em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+
+    transition: all .2s ease;
+
+    &:hover {
+      color: $text-highlight;
+    }
+
+    &>img {
+      max-width: 3.2rem;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__btn {
+    @include buttonReset();
+
+    transition: all .2s ease;
+    &:hover {
+      color: $text-highlight;
+    }
+  }
+}
+
+// About section
+.aboutSection {
+  display: none;
 }
 
 /* Spiner class */

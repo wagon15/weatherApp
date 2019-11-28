@@ -2,6 +2,9 @@ class WeatherHtml {
     constructor() {
         this.locationContainer = document.getElementById('location');
         this.weatherContainer = document.getElementById('weatherContainer');
+        this.weatherBtnContainer = document.getElementById('weatherBtnContainer');
+        this.btnCurrent = document.getElementById('btnCurrent');
+        this.btnForcast = document.getElementById('btnForcast');
         this.metricUnitsField = document.getElementById('metric');
         this.imperialUnitsField = document.getElementById('imperial');
         this.units = 'metric';
@@ -10,13 +13,14 @@ class WeatherHtml {
     toggleSpinner() {
         // Remove all elements
         this.weatherContainer.innerHTML = this.weatherContainer.innerHTML === `<div class="lds-dual-ring"></div>` ? '' : `<div class="lds-dual-ring"></div>` ;
-        
     }
 
     errorNotify(content) {
+        this.locationContainer.innerHTML = '';
+        this.weatherBtnContainer.classList.remove('weatherSection__btnContainer--isVisible');
         this.weatherContainer.innerHTML = 
-            `<div class="error">
-                <img src="#" alt="Error flag"/>
+            `<div class="weatherSection__error">
+                <img src="./media/warning-icon.png" alt="Error flag"/>
                 <p>${content}</p>
             </div>`;
 
@@ -28,32 +32,37 @@ class WeatherHtml {
     showCurrentWeather(data){
 
         this.locationContainer.innerText = `${data.locationName}, ${data.country}`;
+
         this.weatherContainer.innerHTML = `
-            <img id="currentIcon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
-            <p>${data.weather}</p>
-            <p>Current temperature: <span>${
+            <img class="weatherSection__icon" id="currentIcon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
+            <p class="weatherSection__mainInfo weatherSection__highlighted" >${data.weather}</p>
+            <p class="weatherSection__info" >Current temperature: <span class="weatherSection__highlighted">${
                 this.units === 'metric' ? (data.temp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
             </span></p>
-            <p>Min. temperature: <span>${
+            <p class="weatherSection__info" >Min. temperature: <span class="weatherSection__highlighted">${
                 this.units === 'metric' ? (data.minTemp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
                 </span></p>
-            <p>Max. temperature: <span>${
+            <p class="weatherSection__info" >Max. temperature: <span class="weatherSection__highlighted">${
                 this.units === 'metric' ? (data.maxTemp + '&deg;C')  : (this.tempToFarenheit(data.maxTemp)+'&deg;F')}
                 </span></p>
-            <p>Atmospheric pressure: <span>${data.atmPressure}hPa</span></p>
-            <p>Humidity: <span>${data.humidity}%</span></p>
-            <p>Wind: <span>${
+            <p class="weatherSection__info" >Atmospheric pressure: <span class="weatherSection__highlighted">${data.atmPressure}hPa</span></p>
+            <p class="weatherSection__info" >Humidity: <span class="weatherSection__highlighted">${data.humidity}%</span></p>
+            <p class="weatherSection__info" >Wind: <span class="weatherSection__highlighted">${
                 this.units === 'metric' ? (this.windSpeedToKmpH(data.windSpeed) + 'km/h') : (this.windSpeedToMipH(data.windSpeed) + 'mi/h') }, ${this.windDirToNEWS(data.windDir)}</span></p>`;
+
+        this.weatherBtnContainer.classList.add('weatherSection__btnContainer--isVisible');
+        this.btnCurrent.classList.add('weatherSection__btn--isActive');
+        this.btnForcast.classList.remove('weatherSection__btn--isActive');
 
     }
 
     updateWeatherView(data, units = 'metric') {
         if(units === 'metric') {
-            this.metricUnitsField.classList.add('is-active');
-            this.imperialUnitsField.classList.remove('is-active');
+            this.metricUnitsField.classList.add('headerSection__units--isActive');
+            this.imperialUnitsField.classList.remove('headerSection__units--isActive');
         } else {
-            this.imperialUnitsField.classList.add('is-active');
-            this.metricUnitsField.classList.remove('is-active');
+            this.imperialUnitsField.classList.add('headerSection__units--isActive');
+            this.metricUnitsField.classList.remove('headerSection__units--isActive');
         }
 
         this.units = units;
@@ -63,7 +72,7 @@ class WeatherHtml {
         }
     }
 
-    showForcastView(data){
+    showForcastWeather(data){
 
         let output = '';
 
@@ -84,6 +93,8 @@ class WeatherHtml {
         });
 
         this.weatherContainer.innerHTML = output;
+        this.btnForcast.classList.add('weatherSection__btn--isActive');
+        this.btnCurrent.classList.remove('weatherSection__btn--isActive');
     }
 
     windSpeedToKmpH(speed) {

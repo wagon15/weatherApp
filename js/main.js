@@ -34,7 +34,7 @@ form.onsubmit = (event) => {
                 });
 
     } else {
-        weatherHtml.errorNotify('Check input field. Write name of desired city.')
+        weatherHtml.errorNotify('Check input field and name of desired city.')
     }
 };
 
@@ -49,7 +49,8 @@ imperialUnitsField.onclick = (event) => {
 
 // Switch current / forcast view
 btnForcast.onclick = (event) => {
-    weatherHtml.showForcastView(weatherAPI.forcastData);
+    weatherHtml.showForcastWeather(weatherAPI.forcastData);
+    
 };
 btnCurrent.onclick = (event) => {
     weatherHtml.showCurrentWeather(weatherAPI.currentData);

@@ -8,35 +8,57 @@
     <link rel="shortcut icon" href="./media/favicon.png" type="image/png">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
     <main>
-        <section>
-            <h1>Weather App</h1>
-            <p>The weather info at your fingertip.</p>
-            <form id="weatherForm">
-                <input type="text" name="city" id="city" placeholder="Enter city name">
-                <button type="submit">spyglass</button>
+        <!-- Static section for fetching the data -->
+        <section class="headerSection">
+            <h1 class="headerSection__header">Weather App</h1>
+            <p class="headerSection__info">The weather info at your fingertip.</p>
+            <form id="weatherForm" class="headerSection__form">
+                <input class="headerSection__cityField" type="text" name="city" id="city" placeholder="Enter city name">
+                <button class="headerSection__submit" type="submit"><img src="./media/search-icon.png" alt="Search button icon"></button>
             </form>            
-                <div>
-                    <button for="celcius" id="metric">C</button>
-                    <button for="farenheit" id="imperial">F</button>
-                </div>
-        </section>
-        <section id="weatherSection">
-            <h2 id="location"></h2>
-            <div id="weatherContainer">
+            <div class="headerSection__unitsContainer">
+                <button class="headerSection__units headerSection__units--isActive" for="celcius" id="metric">&deg;C</button>
+                <span>|</span>
+                <button class="headerSection__units" for="farenheit" id="imperial">&deg;F</button>
             </div>
-            <div>
-                <button id="btnCurrent">Current</button>
-                <button id="btnForcast">Forcast</button>
+        </section>
+        <!-- Dynamic section presetnting data -->
+        <section class="weatherSection">
+                <h2 class="weatherSection__header" id="location"></h2>
+                <div id="weatherContainer">
+                <!-- Weather data appended here-->
+                
+                </div>
+            <!-- Weather info switching buttons -->
+            <div class="weatherSection__btnContainer" id="weatherBtnContainer">
+                <button class="weatherSection__btn weatherSection__btn--isActive" id="btnCurrent">CURRENT</button>
+                <button class="weatherSection__btn" id="btnForcast">FORCAST</button>
             </div>
         </section>
     </main>
-    <footer>
-        <a href="http://github.com/wagon15" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <button>about</button>
+    <footer class="footerContainer">
+        <a class="footerContainer__link" href="https://github.com/wagon15/weatherApp" target="_blank" rel="noopener noreferrer">
+            <img src="./media/github-icon.svg" alt="GitHub icon">GitHub</a>
+        <button class="footerContainer__btn">about</button>
+        <div class="aboutSection">
+            <section>
+                <h2>About</h2>
+                <p>This is a training project using the 
+                    <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">openweathermap API</a>
+                    to present current weather info and 5 days forcast. Animated weather icons provided by 
+                    <a href="https://www.amcharts.com/free-animated-svg-weather-icons/" target="_blank" rel="noopener noreferrer">amcharts</a>
+                    .
+                </p>
+                <button>Close</button>
+            </section>
+        </div>
     </footer>
+    </div>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
