@@ -96,7 +96,11 @@ body{
     font-family: inherit;
     font-size: inherit;
     border-radius: 2em;
-    border: 2px solid $text-secondary;
+    border: 2px solid $text-primary;
+
+    &:focus {
+      border: 2px solid $text-secondary;
+    }
   }
 
   &__submit {
@@ -217,6 +221,38 @@ body{
       margin-right: .5em;
     }
   }
+
+  &__forcast {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+    padding-bottom: .5em;
+
+    &::-webkit-scrollbar{
+      height: 1rem;
+
+      
+    }
+
+    &::-webkit-scrollbar-track {
+      border-bottom: 1px solid$text-primary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $text-secondary;
+      height: 20px;
+      &:hover {
+        box-shadow: inset 0 0 0 10px rgba(0,0,0,0.2);
+      }
+    }
+
+  }
+
+  &__forcastTile {
+    display: block;
+    min-width: 20rem;
+  }
+
 }
 
 /*

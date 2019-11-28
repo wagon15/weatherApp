@@ -75,23 +75,24 @@ class WeatherHtml {
 
     showForcastWeather(data){
 
-        let output = '';
+        let output = '<div class="weatherSection__forcast">';
 
         data.dayList.forEach( elem => {
             output += `
-            <div> 
-                <img id="currentIcon" src="./media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
-                <p>${elem.weather}</p>
-                <p>Current temperature: <span>${
+            <div class="weatherSection__forcastTile"> 
+                <img class="weatherSection__icon" id="currentIcon" src="./media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
+                <p class="weatherSection__mainInfo weatherSection__header">${elem.date.toLocaleDateString('en-US', { weekday: 'long'})}</p>
+                <p class="weatherSection__info">${elem.date.toLocaleDateString('en-US')}</p>
+                <p class="weatherSection__info">Temperature: <span class="weatherSection__highlighted">${
                     this.units === 'metric' ? (elem.temp + '&deg;C')  : (this.tempToFarenheit(elem.temp)+'&deg;F')}
                 </span></p>
-                <p>Humidity: <span>${elem.humidity}%</span></p>
-                <p>Wind: <span>${
+                <p class="weatherSection__info">Humidity: <span class="weatherSection__highlighted">${elem.humidity}%</span></p>
+                <p class="weatherSection__info">Wind: <span class="weatherSection__highlighted">${
                     this.units === 'metric' ? (this.windSpeedToKmpH(elem.windSpeed) + 'km/h') : (this.windSpeedToMipH(elem.windSpeed) + 'mi/h') }</span></p>
-                <p>${elem.date.toLocaleDateString('en-US', { weekday: 'long'})}</p>
-                <p>${elem.date.toLocaleDateString('en-US')}</p>
+                
             </div>`;
         });
+        output += '</div>';
 
         this.weatherContainer.innerHTML = output;
         this.btnForcast.classList.add('weatherSection__btn--isActive');

@@ -71,6 +71,10 @@ body {
   font-family: inherit;
   font-size: inherit;
   border-radius: 2em;
+  border: 2px solid #808080;
+}
+
+.headerSection__cityField:focus {
   border: 2px solid #035fb5;
 }
 
@@ -219,6 +223,43 @@ body {
 
 .weatherSection__btn:first-of-type {
   margin-right: .5em;
+}
+
+.weatherSection__forcast {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  overflow-x: scroll;
+  padding-bottom: .5em;
+}
+
+.weatherSection__forcast::-webkit-scrollbar {
+  height: 1rem;
+}
+
+.weatherSection__forcast::-webkit-scrollbar-track {
+  border-bottom: 1px solid #808080;
+}
+
+.weatherSection__forcast::-webkit-scrollbar-thumb {
+  background-color: #035fb5;
+  height: 20px;
+}
+
+.weatherSection__forcast::-webkit-scrollbar-thumb:hover {
+  -webkit-box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.weatherSection__forcastTile {
+  display: block;
+  min-width: 20rem;
 }
 
 /*
