@@ -7,6 +7,7 @@ class WeatherHtml {
         this.btnForcast = document.getElementById('btnForcast');
         this.metricUnitsField = document.getElementById('metric');
         this.imperialUnitsField = document.getElementById('imperial');
+        this.aboutContainer = document.getElementById('aboutContainer');
         this.units = 'metric';
     }
 
@@ -95,6 +96,16 @@ class WeatherHtml {
         this.weatherContainer.innerHTML = output;
         this.btnForcast.classList.add('weatherSection__btn--isActive');
         this.btnCurrent.classList.remove('weatherSection__btn--isActive');
+    }
+
+    toggleAbout(event) {
+        if(event.target.matches('#aboutBtn') || event.target.matches('#closeAboutBtn')){
+            event.stopPropagation();
+            this.aboutContainer.classList.toggle('aboutContainer--isVisible');
+        } else if( this.aboutContainer.classList.contains('aboutContainer--isVisible') 
+        && !event.target.closest('#aboutSection'))
+            this.aboutContainer.classList.remove('aboutContainer--isVisible');
+        
     }
 
     windSpeedToKmpH(speed) {

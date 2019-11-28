@@ -8,7 +8,9 @@ const   form = document.getElementById('weatherForm'),
         metricUnitsField = document.getElementById('metric'),
         imperialUnitsField = document.getElementById('imperial'),
         btnCurrent = document.getElementById('btnCurrent'),
-        btnForcast = document.getElementById('btnForcast');
+        btnForcast = document.getElementById('btnForcast'),
+        btnAbout = document.getElementById('aboutBtn'),
+        closeAboutBtn = document.getElementById('closeAboutBtn');
 
 // Case when target submitted by the input field
 form.onsubmit = (event) => {
@@ -50,8 +52,21 @@ imperialUnitsField.onclick = (event) => {
 // Switch current / forcast view
 btnForcast.onclick = (event) => {
     weatherHtml.showForcastWeather(weatherAPI.forcastData);
-    
+
 };
 btnCurrent.onclick = (event) => {
     weatherHtml.showCurrentWeather(weatherAPI.currentData);
+}
+
+// Display about popup
+btnAbout.onclick = (event) => {
+    weatherHtml.toggleAbout(event);
+};
+closeAboutBtn.onclick = (event) => {
+    weatherHtml.toggleAbout(event);
+}
+    // Toggle when click outside of about section
+    const aboutContainer = document.createElement('section');
+window.onclick = (event) => {
+    weatherHtml.toggleAbout(event);
 }

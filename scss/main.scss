@@ -260,9 +260,62 @@ body{
 }
 
 // About section
-.aboutSection {
+.aboutContainer {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.15);
+
+  &--isVisible {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & a {
+    text-decoration: none;
+    color: $text-secondary;
+
+    transition: all .2s ease;
+
+    &:hover {
+      color: $text-highlight;
+    }
+  }
+
+  &__section {
+    width: 80%;
+    max-width: 30rem;
+    padding: .5em;
+  
+    text-align: center;
+    background-color: $container-background;
+  
+    border-radius: 2rem;
+    
+  }
+
+  &__header {
+    @extend .weatherSection__header;
+  }
+
+  &__btn {
+    @include buttonReset();
+
+    font-size: 1.5em;
+    transition: all .2s ease;
+
+    &:hover, &:active {
+      color: $text-highlight;
+    }
+  }
 }
+
+
 
 /* Spiner class */
 .lds-dual-ring {
