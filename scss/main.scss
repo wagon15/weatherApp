@@ -5,7 +5,8 @@ $text-primary: #808080;
 $text-secondary: #035fb5;
 $text-ternary: #156f6b;
 $text-highlight: #bd6500;
-$layout-brakepoint: 60rem;
+$layout-brakepoint: 30rem;
+$layout-brakepoint-second: 80rem;
 $background-color: #e6e6e6;
 $container-background: #ffffff;
 /*
@@ -43,9 +44,9 @@ body{
     color: $text-primary;
     margin: 0;
 
-    @media only screen and (min-width: $layout-brakepoint){
+    /*@media only screen and (min-width: $layout-brakepoint){
         font-size: 200%;
-    }
+    }*/
 
     background-color: $background-color;
 }
@@ -54,6 +55,7 @@ body{
 */
 .container {
   width: 100%;
+  position: relative;
 
   margin-left: auto;
   margin-right: auto;
@@ -62,6 +64,14 @@ body{
   
   background-color: $container-background;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+
+  @include desktop() {
+    top: 5rem;
+    width: 80%;
+    max-width: 130rem;
+
+    border-radius: 2rem;
+  }
 }
 
 // Header
@@ -100,7 +110,14 @@ body{
 
     &:focus {
       border: 2px solid $text-secondary;
+      }
     }
+
+    @include desktop() {
+      width: 90%;
+      max-width: 40rem;
+      margin-left: auto;
+      margin-right: auto;
   }
 
   &__submit {
@@ -163,7 +180,7 @@ body{
   }
 
   &__mainInfo{
-    margin: 0 0 .5em;
+    margin: 0;
     font-size: 1.5em;
   }
 
@@ -179,8 +196,11 @@ body{
   &__error{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: center;
     text-align: left;
+    max-width: 60rem;
+    margin-right: auto;
+    margin-left: auto;
 
     &>img{
       max-width: 128px;
@@ -225,13 +245,12 @@ body{
   &__forcast {
     display: flex;
     flex-flow: row nowrap;
-    overflow-x: scroll;
+
+    overflow-x: auto;
     padding-bottom: .5em;
 
     &::-webkit-scrollbar{
       height: 1rem;
-
-      
     }
 
     &::-webkit-scrollbar-track {
@@ -246,12 +265,17 @@ body{
       }
     }
 
+    @media only screen and (min-width: $layout-brakepoint-second) {
+      justify-content: center;      
+    }
+
   }
 
   &__forcastTile {
     display: block;
     min-width: 20rem;
   }
+
 
 }
 

@@ -33,6 +33,7 @@ class WeatherHtml {
     showCurrentWeather(data){
 
         this.locationContainer.innerText = `${data.locationName}, ${data.country}`;
+        
 
         this.weatherContainer.innerHTML = `
             <img class="weatherSection__icon" id="currentIcon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
@@ -54,7 +55,7 @@ class WeatherHtml {
         this.weatherBtnContainer.classList.add('weatherSection__btnContainer--isVisible');
         this.btnCurrent.classList.add('weatherSection__btn--isActive');
         this.btnForcast.classList.remove('weatherSection__btn--isActive');
-
+        
     }
 
     updateWeatherView(data, units = 'metric') {
@@ -69,7 +70,7 @@ class WeatherHtml {
         this.units = units;
 
         if( data !== null) {
-            weatherHtml.showCurrentWeather(data)
+            weatherHtml.showCurrentWeather(data);
         }
     }
 

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Weather App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="./media/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="./media/weather-favicon.png" type="image/png">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:300,400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-    <main>
+    <main class="mainContainer">
         <!-- Static section for fetching the data -->
         <section class="headerSection">
             <h1 class="headerSection__header">Weather App</h1>
@@ -30,7 +30,7 @@
         <!-- Dynamic section presetnting data -->
         <section class="weatherSection">
                 <h2 class="weatherSection__header" id="location"></h2>
-                <div id="weatherContainer" >
+                <div class="weatherSection__container" id="weatherContainer" >
                 <!-- Weather data appended here-->
                 
                 </div>
