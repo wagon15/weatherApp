@@ -13,7 +13,7 @@ In build process additionally used technologies:
 
 ## Access
 
-Master branch of project page is available under link [WeatherApp]()
+Master branch of project page is available under link [WeatherApp](https://wagon15.github.io/weatherApp/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
