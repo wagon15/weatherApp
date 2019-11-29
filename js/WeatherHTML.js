@@ -21,7 +21,7 @@ class WeatherHtml {
         this.weatherBtnContainer.classList.remove('weatherSection__btnContainer--isVisible');
         this.weatherContainer.innerHTML = 
             `<div class="weatherSection__error">
-                <img src="./media/warning-icon.png" alt="Error flag"/>
+                <img src="media/warning-icon.png" alt="Error flag"/>
                 <p>${content}</p>
             </div>`;
 
@@ -36,7 +36,7 @@ class WeatherHtml {
         
 
         this.weatherContainer.innerHTML = `
-            <img class="weatherSection__icon" id="currentIcon" src="./media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
+            <img class="weatherSection__icon" id="currentIcon" src="media/${this.assignWeatherIcon(data.iconId)}" alt="${data.weather}">
             <p class="weatherSection__mainInfo weatherSection__highlighted" >${data.weather}</p>
             <p class="weatherSection__info" >Current temperature: <span class="weatherSection__highlighted">${
                 this.units === 'metric' ? (data.temp + '&deg;C')  : (this.tempToFarenheit(data.temp)+'&deg;F')}
@@ -81,7 +81,7 @@ class WeatherHtml {
         data.dayList.forEach( elem => {
             output += `
             <div class="weatherSection__forcastTile"> 
-                <img class="weatherSection__icon" id="currentIcon" src="./media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
+                <img class="weatherSection__icon" id="currentIcon" src="media/${this.assignWeatherIcon(elem.iconId)}" alt="${elem.weather}">
                 <p class="weatherSection__mainInfo weatherSection__header">${elem.date.toLocaleDateString('en-US', { weekday: 'long'})}</p>
                 <p class="weatherSection__info">${elem.date.toLocaleDateString('en-US')}</p>
                 <p class="weatherSection__info">Temperature: <span class="weatherSection__highlighted">${
